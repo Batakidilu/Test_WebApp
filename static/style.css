@@ -1,0 +1,484 @@
+@font-face {
+    font-family: 'E+H_SerifLig';
+    src: url('../fonts/E+H_SerifLig.ttf') format('truetype');
+}
+
+body, html {
+        font-family: 'YourCustomFont', sans-serif;
+        height: 100%;
+        margin: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+}
+
+
+/* Section 1 ------------------------------------------------------- */
+
+.section1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-window {
+    font-size: 36px;
+    display: flex;
+    justify-content: start; /* Adjust this as needed, e.g., 'space-between', 'space-around', etc. */
+    align-items: flex-start; /* Aligns items at the start of the cross axis, ensuring top alignment */
+    padding: 20px;
+    border: 1px solid #ccc; /* Add a border around the selection window for better visual separation */
+    border-radius: 10px; /* Rounded corners for the selection window */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    background-color: #8FA2AC; /* Light background color for the selection window */
+}
+
+.material-column, .employees-column {
+    flex-direction: column;
+    align-items: flex-start;
+    /* width: 300px; */
+    width: 18vw;
+    text-align: center;
+    margin: 20px; /* Add some margin for spacing */
+}
+
+.material-column button {
+    margin: 5px;
+    width: 15vw;
+}
+
+.employees-column input {
+    width: 20vw;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input {
+  border: 6px solid #ddd;
+  display: inline-flex;
+  border-radius: 10px;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+}
+
+.number-input button {
+  outline:none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f077';
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.number-input input[type=number] {
+  max-width: 2.5rem;
+  padding: .5rem;
+  border: solid #ddd;
+  border-width: 0 2px;
+  font-size: 36px;
+  height: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.select-window .form-select {
+    width: 20vw; /* Example height */
+    font-size: 28px; /* Adjust font size */
+    padding: 2.5vh;
+}
+
+.select-window .number-input input[type="number"] {
+    width: 5vw; /* Match the select height */
+    height: 7vh;
+    font-size: 28px; /* Adjust font size */
+}
+
+.select-window .number-input button {
+    width: 4vw; /* Adjust button width */
+    font-size: 28px; /* Adjust font size */
+    height: 7vh; /* Adjust button height */
+}
+
+/* Section 2 ------------------------------------------------------- */
+
+.section2 {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.bar-container {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-progress-container {
+  height: 200px; /* Adjust the height as needed */
+  width: 60px; /* Adjust the width as needed */
+  background-color: #e9ecef;
+  border-radius: .25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center children horizontally */
+}
+
+.vertical-progress {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.progress-bar {
+  height: 75%; /* Reflecting 75% fill */
+  width: 100%;
+  background-color: #007bff; /* Bootstrap primary color */
+  border-radius: .25rem;
+  position: absolute;
+  bottom: 0; /* Start filling from the bottom */
+}
+
+.vertical-progress .progress-bar {
+  color: black;
+}
+
+.current-percentage, .max-percentage {
+  position: absolute;
+  color: black
+  font-size: 28px; /* Adjust size as needed */
+}
+
+.current-percentage {
+  bottom: calc(8%); /* Adjust based on the current level */
+}
+
+.max-percentage {
+  bottom: calc(100% - 40px);
+}
+
+
+
+/* Section 3 ------------------------------------------------------- */
+
+.section3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Ensures content in section 3 is stacked vertically */
+}
+
+.pause-mode {
+    border: 6px dashed #506671;
+    box-shadow: 0 0 15px grey;
+    background-color: #C3CED5;
+    transition: all 0.3s ease-in-out;
+    animation: pulsePause 1s infinite;
+}
+.defect-mode {
+    border: 6px dashed red;
+    box-shadow: 0 0 15px red;
+    background-color: #ffcccc;
+    transition: all 0.3s ease-in-out;
+    animation: pulseError 1s infinite;
+}
+
+@keyframes pulsePause {
+    0% {
+        box-shadow: 10 10 15px grey;
+    }
+    50% {
+        box-shadow: 0 0 45px grey; /* Increase the glow to catch attention */
+    }
+    100% {
+        box-shadow: 0 0 15px grey;
+    }
+}
+@keyframes pulseError {
+    0% {
+        box-shadow: 0 0 15px red;
+    }
+    50% {
+        box-shadow: 0 0 35px red; /* Increase the glow to catch attention */
+    }
+    100% {
+        box-shadow: 0 0 15px red;
+    }
+}
+
+
+.timer-container {
+    margin: 0px;
+
+}
+
+#timerStatus {
+    font-size: 60px; /* Adjust size as needed */
+}
+
+#timerStatus svg {
+    width: 7vw; /* Adjust the size as needed */
+    height: 7vw; /* Adjust the size as needed */
+}
+
+#stopButton1 {
+    background-color: #506671;
+}
+#stopButton2 {
+    background-color: #D50C2F;
+}
+
+.section3 .button-container {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.section3 .button-container .error-buttons {
+    height: 9.7vh;
+}
+
+.section3 .button-container .error-buttons button {
+    background-color: #D50C2F;
+    width: 20vw;
+    height: 6.66vw;
+    border-radius: 15px; /* Rounded corners */
+    border: solid #506671 2px;
+    font-size: 24px;
+}
+
+.selection-window {
+    display: flex; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    bottom: 5.5%; /* Adjust this based on your layout to move it up from the bottom */
+    left: 25%; /* Adjust based on where stopButton2 typically appears */
+    z-index: 1050; /* Above other content */
+    width: auto; /* Or set a specific width */
+    max-width: 20vw; /* Maximum width */
+    min-width: 20vw;
+    max-height: 20vw; /* Maximum height, making it scrollable */
+    min-height: 20vw;
+    overflow-y: auto; /* Scrollable */
+    background-color: #506671; /* Background */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 20px; /* Padding around content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+.selection-window .selection-option {
+    font-size: 18px; /* Adjusted for readability within the window */
+    padding: 15px 30px; /* Same padding as your buttons */
+    width: 100%; /* Full width within the selection window */
+    margin: 10px 0; /* Space between buttons */
+    cursor: pointer; /* Cursor on hover */
+    background-color: #D50C2F; /* Background color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 20px; /* Rounded corners */
+    transition: background-color 0.3s; /* Background color transition */
+    text-align: center; /* Center text */
+}
+
+/* Hover effect for options */
+.selection-window .selection-option:hover {
+    opacity: 0.8; /* Slight transparency on hover */
+}
+
+.selection-window .child-option {
+    width: 100%;
+    font-size: 18px; /* Adjusted for readability within the window */
+    background-color: #D50C2F; /* Background color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 20px; /* Rounded corners */
+    transition: background-color 0.3s; /* Background color transition */
+    text-align: center; /* Center text */
+}
+
+/* Section 4 ------------------------------------------------------- */
+
+.section4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Keep the direction as column for overall layout */
+}
+
+#section4 {
+    flex-direction: column; /* Keep the direction as column for overall layout */
+    align-items: center; /* Align items in the center */
+}
+
+.button-container {
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Add some space between the buttons */
+}
+
+.counter-display {
+    font-size: 36px; /* Adjust the font size as needed */
+    margin-top: 5%;
+    margin-bottom: 0%; /* Space between counter and button */
+    color: black;
+    font-weight: bold;
+}
+
+.counter-label, .counter {
+    display: inline-block; /* Ensure they are on the same line */
+}
+
+.button-container button {
+    font-size: 36px; /* Increase font size */
+    padding: 15px 30px; /* Increase padding to make button larger */
+    width: 20vw;
+    height: 20vw;
+    cursor: pointer; /* Change cursor on hover */
+    background-color: #007CAA; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 20px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+#increaseCounterButton {
+    background-color: #007CAA;
+}
+#decreaseCounterButton {
+    background-color: #E94C0A;
+}
+button:hover {
+    opacity: 0.95;
+}
+
+/* New Page Modal ---------------------------------------------------------------------------------- */
+
+#increaseModal .modal-content {
+    justify-content: center; /* Center children in the container */
+    align-items: center; /* Center children vertically */
+    display: flex; /* Use flexbox for the layout */
+    flex-direction: row; /* Arrange children (buttons) in a row, i.e., horizontally */
+    justify-content: center; /* Center children in the container */
+    align-items: stretch; /* Stretch children to fill the container height */
+    width: 95vw; /* Full viewport width */
+    height: 95vh; /* Full viewport height */
+    position: fixed; /* Fix position to cover the entire viewport */
+    top: 2.5%;
+    left: 2.5%;
+    margin: 0; /* Remove margins */
+    padding: 0; /* Remove padding */
+    border: none; /* No borders */
+    background-color: #fefefe; /* Background color of the modal */
+    box-shadow: none; /* No box shadows */
+}
+
+#decreaseModal .modal-content {
+    justify-content: center; /* Center children in the container */
+    align-items: center; /* Center children vertically */
+    display: flex; /* Use flexbox for the layout */
+    flex-direction: row; /* Arrange children (buttons) in a row, i.e., horizontally */
+    justify-content: center; /* Center children in the container */
+    align-items: stretch; /* Stretch children to fill the container height */
+    width: 95vw; /* Full viewport width */
+    height: 95vh; /* Full viewport height */
+    position: fixed; /* Fix position to cover the entire viewport */
+    top: 2.5%;
+    left: 2.5%;
+    margin: 0; /* Remove margins */
+    padding: 0; /* Remove padding */
+    border: none; /* No borders */
+    background-color: #fefefe; /* Background color of the modal */
+    box-shadow: none; /* No box shadows */
+}
+
+#increaseModal .modal-content button {
+    justify-content: center; /* Center children in the container */
+    align-items: center; /* Center children vertically */
+    flex: 1; /* Allow buttons to grow and fill the space equally, important for equal width */
+    width: 50%; /* Ensure each button aims to take up half the width */
+    height: 100%; /* Full height */
+    font-size: 60px; /* Adjust font size as needed */
+    padding: 20px; /* Padding for aesthetics */
+    border: none; /* No borders */
+    cursor: pointer; /* Cursor to pointer on hover over the buttons */
+    transition: background-color 0.3s; /* Smooth transition for visual effect */
+
+}
+
+#decreaseModal .modal-content button {
+    justify-content: center; /* Center children in the container */
+    align-items: center; /* Center children vertically */
+    flex: 1; /* Allow buttons to grow and fill the space equally, important for equal width */
+    width: 50%; /* Ensure each button aims to take up half the width */
+    height: 100%; /* Full height */
+    font-size: 60px; /* Adjust font size as needed */
+    padding: 20px; /* Padding for aesthetics */
+    border: none; /* No borders */
+    cursor: pointer; /* Cursor to pointer on hover over the buttons */
+    transition: background-color 0.3s; /* Smooth transition for visual effect */
+}
+/* Specific styles for differentiation */
+#increaseButton1 {
+    background-color: #007CAA; /* Example color for Button 1 */
+    color: white; /* Text color for Button 1 */
+}
+#increaseButton2 {
+    background-color: #E94C0A; /* Example color for Button 2 */
+    color: white; /* Text color for Button 2 */
+}
+
+#decreaseButton1 {
+    background-color: #007CAA; /* Example color for Button 1 */
+    color: white; /* Text color for Button 1 */
+}
+#decreaseButton2 {
+    background-color: #E94C0A; /* Example color for Button 2 */
+    color: white; /* Text color for Button 2 */
+}
+
+window.onclick = function(event) {
+    var increaseModal = document.getElementById('increaseModal');
+    var decreaseModal = document.getElementById('decreaseModal');
+    if (event.target == increaseModal) {
+        increaseModal.style.display = "none";
+    } else if (event.target == decreaseModal) {
+        decreaseModal.style.display = "none";
+    }
+}
+
+
