@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Options</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='options-style.css') }}">
+</head>
+<body class="options-page">
+    {% include 'navbar.html' %}
+    <div class="container mt-5 main-content">
+        <h1>Anlagen und Fehler Verwaltung</h1>
+        <form method="POST" class="mb-3">
+            <div class="mb-3">
+                <label for="new_option" class="form-label"></label>
+                <input type="text" class="form-control" id="new_option" name="new_option" placeholder="Neue Anlage eintragen"
+                       required autofocus onfocus="this.scrollIntoView({ behavior: 'smooth' });">
+            </div>
+            <button type="submit" class="btn btn-primary">Anlage hinzufügen</button>
+        </form>
+
+        <h2>Aktuelle Anlagen und Fehler</h2>
+        <ul class="list-group">
+            {% for option in options %}
+            <li class="list-group-item">
+                <div class= "d-flex justify-content-between align-items-center">
+                    <b> {{ option.label }} </b>
+                    <form action="{{ url_for('delete_option', option_id=option.id) }}" method="post" class="d-inline">
+                        <button type="button" class="btn btn-info btn-sm addDetailButton" data-bs-toggle="modal"
+                                data-bs-target="#addChildOptionModal" data-option-id="{{ option.id }}">Fehler ergänzen</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                <!-- Placeholder for child options -->
+                <ul class="list-group mt-2 child-option-list" id="child-options-{{ option.id }}">
+                    {% for child_option in option.children %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ child_option.label }}
+                        <!-- Additional actions for child options, such as edit or delete, can go here -->
+                        <button type="button" class="btn btn-danger btn-sm deleteChildButton" data-child-id="{{ child_option.id }}">Delete</button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+        <!-- Modal for adding child options -->
+    <div class="modal fade" id="addChildOptionModal" tabindex="-1" aria-labelledby="addChildOptionModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addChildOptionModalLabel">Fehler hinzufügen</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="addChildOptionForm">
+              <div class="mb-3">
+                <label for="childOptionLabel" class="form-label">Fehler hinzufügen</label>
+                <input type="text" class="form-control" id="childOptionLabel" name="child_label" required >
+              </div>
+              <input type="hidden" id="parentOptionId" name="parent_id">
+              <button type="submit" class="btn btn-primary">Fehler hinzufügen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='options_script.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
